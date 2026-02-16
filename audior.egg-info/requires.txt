@@ -1,0 +1,7 @@
+openai
+pypdf
+tiktoken
+typer
+rich
+pydantic
+python-dotenv

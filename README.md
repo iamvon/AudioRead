@@ -1,0 +1,34 @@
+# AudioRead (CLI)
+
+Convert a PDF into a narrated audio file using a chunked LLM pipeline that avoids context window limits.
+
+## Install (uv)
+
+```bash
+uv venv
+source .venv/bin/activate
+uv pip install -e .
+```
+
+## Usage
+
+```bash
+cp .env.example .env
+# edit .env to set OPENAI_API_KEY
+audior convert /path/to/book.pdf
+```
+
+Options:
+- `--style narration|podcast|lecture|summary`
+- `--text-model gpt-4o-mini`
+- `--tts-model gpt-4o-mini-tts`
+- `--voice alloy`
+- `--max-input-tokens 12000`
+- `--overlap-tokens 200`
+- `--tts-max-chars 3500`
+
+Outputs are placed under `outputs/<pdf_name>/`.
+
+## Notes
+- Audio chunks are concatenated as MP3 bytes. Most players handle this fine.
+- For higher fidelity merges, we can add optional ffmpeg/pydub later.

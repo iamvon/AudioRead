@@ -1,0 +1,6 @@
+openai
+pypdf
+tiktoken
+typer
+rich
+pydantic

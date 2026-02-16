@@ -1,0 +1,22 @@
+[project]
+name = "audior"
+version = "0.1.0"
+description = "PDF to audio CLI with chunked LLM pipeline"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "openai",
+  "pypdf",
+  "tiktoken",
+  "typer",
+  "rich",
+  "pydantic",
+  "python-dotenv",
+]
+
+[project.scripts]
+audior = "audior.cli:app"
+
+[tool.setuptools.packages.find]
+include = ["audior"]
+exclude = ["outputs"]
