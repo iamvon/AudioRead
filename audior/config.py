@@ -13,6 +13,7 @@ class AudioReadConfig(BaseModel):
 
     tts_max_chars: int = Field(default=3500)
     style: str = Field(default="narration")
+    mode: str = Field(default="summary")  # summary, full, or chapter
 
     clean_text: bool = Field(default=True)
     remove_repeated_lines: bool = Field(default=True)

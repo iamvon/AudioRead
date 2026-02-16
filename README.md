@@ -2,6 +2,14 @@
 
 Convert a PDF into a narrated audio file using a chunked LLM pipeline that avoids context window limits.
 
+## Acknowledgements
+
+This project is inspired by PDF2Audio:
+
+```
+https://github.com/lamm-mit/PDF2Audio
+```
+
 ## Install (uv)
 
 ```bash
@@ -20,6 +28,7 @@ audior convert /path/to/book.pdf
 
 Options:
 - `--style narration|podcast|lecture|summary`
+- `--mode summary|full|chapter`
 - `--text-model gpt-4o-mini`
 - `--tts-model gpt-4o-mini-tts`
 - `--voice alloy`
@@ -29,6 +38,16 @@ Options:
 
 Outputs are placed under `outputs/<pdf_name>/`.
 
+## Contributing
+
+- Create an issue to report bugs or suggest features.
+- Open a PR for improvements or fixes.
+
+## License
+
+MIT
+
 ## Notes
 - Audio chunks are concatenated as MP3 bytes. Most players handle this fine.
 - For higher fidelity merges, we can add optional ffmpeg/pydub later.
+- `script_tts.txt` is a cleaned version used to avoid speaking markdown symbols.

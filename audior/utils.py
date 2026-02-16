@@ -38,3 +38,21 @@ def chunk_list(items: Iterable[str], max_chars: int) -> List[str]:
     if current:
         chunks.append(current)
     return chunks
+
+
+def sanitize_for_tts(text: str) -> str:
+    # Remove markdown headings and bullets, and common outline markers.
+    lines = []
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line:
+            lines.append("")
+            continue
+        line = re.sub(r"^#+\s*", "", line)
+        line = re.sub(r"^[\-\*•]+\s*", "", line)
+        line = re.sub(r"^[IVXLCDM]+\.\s+", "", line, flags=re.IGNORECASE)
+        line = re.sub(r"^[0-9]+\.\s+", "", line)
+        lines.append(line)
+    cleaned = "\n".join(lines)
+    cleaned = normalize_whitespace(cleaned)
+    return cleaned

@@ -3,7 +3,7 @@ from __future__ import annotations
 import io
 import os
 from pathlib import Path
-from typing import List
+from typing import Callable, List, Optional
 
 from openai import OpenAI
 
@@ -29,6 +29,7 @@ def script_to_audio_chunks(
     script: str,
     max_chars: int,
     output_dir: Path,
+    on_progress: Optional[Callable[[int, int], None]] = None,
 ) -> List[Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -42,12 +43,17 @@ def script_to_audio_chunks(
         pieces.extend(chunk_list(sentences, max_chars))
 
     paths: List[Path] = []
+    total = len(pieces)
+    if on_progress:
+        on_progress(0, total)
     for i, piece in enumerate(pieces, start=1):
         audio_bytes = _tts_bytes(client, model, voice, piece)
         chunk_path = output_dir / f"chunk_{i:04d}.mp3"
         with open(chunk_path, "wb") as f:
             f.write(audio_bytes)
         paths.append(chunk_path)
+        if on_progress:
+            on_progress(i, total)
     return paths
 
 
