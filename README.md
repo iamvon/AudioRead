@@ -51,3 +51,11 @@ MIT
 - Audio chunks are concatenated as MP3 bytes. Most players handle this fine.
 - For higher fidelity merges, we can add optional ffmpeg/pydub later.
 - `script_tts.txt` is a cleaned version used to avoid speaking markdown symbols.
+
+## Demo
+
+Summary audio sample:
+[docs/demo-output.mp3](https://github.com/iamvon/AudioRead/tree/main/docs/demo-output.mp3)
+
+Source book:
+[Great Physicists: The Life and Times of Leading Physicists from Galileo to Hawking](https://www.amazon.com/Great-Physicists-Leading-Galileo-Hawking/dp/0195137485)
