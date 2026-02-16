@@ -5,6 +5,7 @@ __pycache__/
 outputs/
 audio_chunks/
 *.mp3
+!docs/demo-output.mp3
 *.wav
 *.m4a
 .DS_Store
